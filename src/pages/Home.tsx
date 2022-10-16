@@ -1,7 +1,6 @@
 import "react-native-reanimated";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import { stackNavigation } from "../utils/stackNavigation";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { useColorScheme } from "nativewind";
 import { storageTheme } from "../utils/storageTheme";
-import { MotiView } from "@motify/components";
+import { MotiView, MotiText } from "@motify/components";
 
 import { transition } from "../utils/defaulTimingTransition";
 import { TimerSegment } from "../components/TimerSegment";
@@ -41,8 +40,9 @@ function Home() {
         }}
       >
         {/* content */}
-        <View className="flex flex-1 items-centers justify-between w-[90%] py-10 m-auto">
-          <View className="w-[100%] justify-between flex-row">
+        <View className="flex flex-1 items-centers justify-between w-[90%] py-5 m-auto">
+          {/* header */}
+          <View className="w-[100%] h-[96] justify-between flex-row items-center">
             <Switch
               onPress={() => setAutoSwitchIsActive((current) => !current)}
               size={76}
@@ -74,6 +74,7 @@ function Home() {
             />
           </View>
 
+          {/* timer */}
           <View className="flex-row justify-between">
             <TimerSegment />
             <TimerSegment />
@@ -94,16 +95,51 @@ function Home() {
             <TimerSegment />
           </View>
 
-          <View className="items-center">
-            <Text className="text-base text-[#191716] dark:text-[#F4F4F4]">
+          {/* footer */}
+          <View className="items-center h-[96]">
+            <MotiText
+              style={{
+                fontSize: 16,
+                color: colorScheme === "dark" ? "#F4F4F4" : "#191716",
+                fontFamily: "Inter_400Regular",
+              }}
+              from={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 600,
+                loop: true,
+                type: "timing",
+                duration: 800,
+              }}
+            >
               Swipe up to Information
-            </Text>
-            <Ionicons
-              name="chevron-up"
-              size={16}
-              color={colorScheme === "dark" ? "#F4F4F4" : "#191716"}
-              style={{ marginTop: 24 }}
-            />
+            </MotiText>
+
+            <MotiView
+              from={{
+                translateY: 20,
+              }}
+              animate={{
+                translateY: 0,
+              }}
+              transition={{
+                delay: 600,
+                loop: true,
+                type: "timing",
+                duration: 800,
+              }}
+            >
+              <Ionicons
+                name="chevron-up"
+                size={16}
+                color={colorScheme === "dark" ? "#F4F4F4" : "#191716"}
+                style={{ marginTop: 24 }}
+              />
+            </MotiView>
           </View>
         </View>
       </MotiView>

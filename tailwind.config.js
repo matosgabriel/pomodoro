@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     fontFamily: {
       'raj': ['Rajdhani_400Regular'],
-      'raj-bold': ['Rajdhani_700Bold']
+      'raj-bold': ['Rajdhani_700Bold'],
+      'inter': ['Inter_400Regular']
     },
     fontWeight: {
       'extra-light': 100,

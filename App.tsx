@@ -19,6 +19,8 @@ import {
   Rajdhani_700Bold,
 } from "@expo-google-fonts/rajdhani";
 
+import { Inter_400Regular } from "@expo-google-fonts/inter";
+
 export type RootStackParamList = {
   Home: {};
   Customize: {};
@@ -50,6 +52,7 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     Rajdhani_400Regular,
     Rajdhani_700Bold,
+    Inter_400Regular,
   });
 
   if (!fontsLoaded) {

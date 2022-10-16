@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.2",
     "@expo-google-fonts/rajdhani": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@motify/components": "^0.18.0",
