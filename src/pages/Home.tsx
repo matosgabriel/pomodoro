@@ -1,5 +1,5 @@
 import "react-native-reanimated";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import { stackNavigation } from "../utils/stackNavigation";
@@ -13,16 +13,20 @@ import { storageTheme } from "../utils/storageTheme";
 import { MotiView } from "@motify/components";
 
 function Home() {
-  const navigation = stackNavigation();
-  const [autoSwitchIsActive, setAutoSwitchIsActive] = useState(false);
-  const [darkSwitchIsActive, setDarkSwitchIsActive] = useState(false);
-
   const { setColorScheme, colorScheme } = useColorScheme();
 
-  // bg-white dark:bg-[#202124]
+  const navigation = stackNavigation();
+  const [autoSwitchIsActive, setAutoSwitchIsActive] = useState(false);
+  const [darkSwitchIsActive, setDarkSwitchIsActive] = useState(
+    () => colorScheme === "dark"
+  );
+
+  useEffect(() => {
+    setDarkSwitchIsActive(colorScheme === "dark");
+  }, [colorScheme]);
 
   return (
-    <SafeAreaView className="flex flex-1 ">
+    <SafeAreaView className="flex flex-1">
       <MotiView
         style={{
           display: "flex",
@@ -64,14 +68,11 @@ function Home() {
             />
           </View>
 
-          <View>
-            <Text className="mt-6">Nome</Text>
-            <View className="flex bg-white max-w rounded focus-within:border-1 ring-cyan-600">
-              <TextInput
-                className="max-w bg-gray-300 px-4 py-2 rounded"
-                placeholder="John Doe"
-              />
-            </View>
+          <View className="row h-128">
+            <TextInput
+              className="h-[128] text-7xl w-[72] text-center leading-[78] bg-cyan-500"
+              value="2"
+            />
           </View>
 
           <TouchableHighlight
