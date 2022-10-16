@@ -12,6 +12,9 @@ import { useColorScheme } from "nativewind";
 import { storageTheme } from "../utils/storageTheme";
 import { MotiView } from "@motify/components";
 
+import { transition } from "../utils/defaulTimingTransition";
+import { TimerSegment } from "../components/TimerSegment";
+
 function Home() {
   const { setColorScheme, colorScheme } = useColorScheme();
 
@@ -31,15 +34,18 @@ function Home() {
         style={{
           display: "flex",
           flex: 1,
+        }}
+        transition={transition}
+        animate={{
           backgroundColor: colorScheme === "light" ? "#fff" : "#202124",
         }}
       >
         {/* content */}
-        <View className="flex items-centers justify-between w-[90%] h-[90%] m-auto">
+        <View className="flex flex-1 items-centers justify-between w-[90%] py-10 m-auto">
           <View className="w-[100%] justify-between flex-row">
             <Switch
               onPress={() => setAutoSwitchIsActive((current) => !current)}
-              size={72}
+              size={76}
               isActive={autoSwitchIsActive}
               activeColor={"#6372E0"}
               inactiveColor={colorScheme === "light" ? "#E8E8E8" : "#303134"}
@@ -55,7 +61,7 @@ function Home() {
                   return !current;
                 });
               }}
-              size={72}
+              size={76}
               isActive={darkSwitchIsActive}
               activeColor={"#303134"}
               inactiveColor={"#e8e8e8"}
@@ -68,20 +74,37 @@ function Home() {
             />
           </View>
 
-          <View className="row h-128">
-            <TextInput
-              className="h-[128] text-7xl w-[72] text-center leading-[78] bg-cyan-500"
-              value="2"
-            />
+          <View className="flex-row justify-between">
+            <TimerSegment />
+            <TimerSegment />
+
+            <View className="items-center justify-center px-2">
+              <Text
+                style={{
+                  fontSize: 82,
+                  fontFamily: "Rajdhani_700Bold",
+                  color: colorScheme === "light" ? "#474342" : "#F4F4F4",
+                }}
+              >
+                :
+              </Text>
+            </View>
+
+            <TimerSegment />
+            <TimerSegment />
           </View>
 
-          <TouchableHighlight
-            className="px-4 py-3 bg-cyan-400 rounded items-center"
-            underlayColor="#333"
-            onPress={() => navigation.navigate("Customize", {})}
-          >
-            <Text className="font-bold text-white">Customize</Text>
-          </TouchableHighlight>
+          <View className="items-center">
+            <Text className="text-base text-[#191716] dark:text-[#F4F4F4]">
+              Swipe up to Information
+            </Text>
+            <Ionicons
+              name="chevron-up"
+              size={16}
+              color={colorScheme === "dark" ? "#F4F4F4" : "#191716"}
+              style={{ marginTop: 24 }}
+            />
+          </View>
         </View>
       </MotiView>
     </SafeAreaView>

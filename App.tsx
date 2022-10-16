@@ -13,6 +13,12 @@ import { Customize } from "./src/pages/Customize";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useColorScheme } from "nativewind";
 
+import {
+  useFonts,
+  Rajdhani_400Regular,
+  Rajdhani_700Bold,
+} from "@expo-google-fonts/rajdhani";
+
 export type RootStackParamList = {
   Home: {};
   Customize: {};
@@ -23,6 +29,7 @@ const Stack = createStackNavigator();
 export default function App() {
   const { setColorScheme, colorScheme } = useColorScheme();
 
+  // Getting stored theme from AsyncStorage
   const handleGetTheme = useCallback(async () => {
     try {
       const jsonValue = await AsyncStorage.getItem("@pomodoro:theme");
@@ -39,6 +46,15 @@ export default function App() {
   useEffect(() => {
     handleGetTheme();
   });
+
+  let [fontsLoaded] = useFonts({
+    Rajdhani_400Regular,
+    Rajdhani_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
