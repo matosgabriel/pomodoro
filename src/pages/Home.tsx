@@ -76,8 +76,8 @@ function Home() {
 
           {/* timer */}
           <View className="flex-row justify-between">
-            <TimerSegment />
-            <TimerSegment />
+            <TimerSegment content="1" />
+            <TimerSegment content="2" />
 
             <View className="items-center justify-center px-2">
               <Text
@@ -91,8 +91,8 @@ function Home() {
               </Text>
             </View>
 
-            <TimerSegment />
-            <TimerSegment />
+            <TimerSegment content="5" />
+            <TimerSegment content="0" />
           </View>
 
           {/* footer */}
