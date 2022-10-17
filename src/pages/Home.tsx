@@ -90,8 +90,8 @@ function Home() {
               <View className="items-center justify-center px-2">
                 <Text
                   style={{
-                    fontSize: 82,
-                    fontFamily: "Rajdhani_700Bold",
+                    fontSize: 108,
+                    fontFamily: "Rajdhani_600SemiBold",
                     color: colorScheme === "light" ? "#474342" : "#F4F4F4",
                   }}
                 >

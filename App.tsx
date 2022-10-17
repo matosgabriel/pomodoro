@@ -16,6 +16,7 @@ import { useColorScheme } from "nativewind";
 import {
   useFonts,
   Rajdhani_400Regular,
+  Rajdhani_600SemiBold,
   Rajdhani_700Bold,
 } from "@expo-google-fonts/rajdhani";
 
@@ -51,6 +52,7 @@ export default function App() {
 
   let [fontsLoaded] = useFonts({
     Rajdhani_400Regular,
+    Rajdhani_600SemiBold,
     Rajdhani_700Bold,
     Inter_400Regular,
   });

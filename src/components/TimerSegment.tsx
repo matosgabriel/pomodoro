@@ -12,8 +12,9 @@ function TimerSegment({ content }: TimerSegmentProps) {
     <View className="rounded-xl w-[78] items-center justify-center border-2 border-[#696564]">
       <Text
         style={{
-          fontSize: 82,
-          fontFamily: "Rajdhani_700Bold",
+          fontSize: 108,
+          marginBottom: -10,
+          fontFamily: "Rajdhani_600SemiBold",
           color: colorScheme === "light" ? "#474342" : "#F4F4F4",
         }}
       >
