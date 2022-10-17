@@ -13,6 +13,12 @@ import { MotiView, MotiText } from "@motify/components";
 
 import { transition } from "../utils/defaulTimingTransition";
 import { TimerSegment } from "../components/TimerSegment";
+import { TimeOption } from "../components/TimeOption";
+
+import TomatoIcon from "../../assets/tomato-icon.png";
+import SlugIcon from "../../assets/slug-icon.png";
+import LightiningIcon from "../../assets/lightining-icon.png";
+import PlusIcon from "../../assets/plus-icon.png";
 
 function Home() {
   const { setColorScheme, colorScheme } = useColorScheme();
@@ -74,25 +80,38 @@ function Home() {
             />
           </View>
 
-          {/* timer */}
-          <View className="flex-row justify-between">
-            <TimerSegment content="1" />
-            <TimerSegment content="2" />
+          {/* main content */}
+          <View>
+            {/* timer */}
+            <View className="flex-row justify-between">
+              <TimerSegment content="1" />
+              <TimerSegment content="2" />
 
-            <View className="items-center justify-center px-2">
-              <Text
-                style={{
-                  fontSize: 82,
-                  fontFamily: "Rajdhani_700Bold",
-                  color: colorScheme === "light" ? "#474342" : "#F4F4F4",
-                }}
-              >
-                :
-              </Text>
+              <View className="items-center justify-center px-2">
+                <Text
+                  style={{
+                    fontSize: 82,
+                    fontFamily: "Rajdhani_700Bold",
+                    color: colorScheme === "light" ? "#474342" : "#F4F4F4",
+                  }}
+                >
+                  :
+                </Text>
+              </View>
+
+              <TimerSegment content="5" />
+              <TimerSegment content="0" />
             </View>
 
-            <TimerSegment content="5" />
-            <TimerSegment content="0" />
+            <View className="flex-row justify-between mt-[32]">
+              <TimeOption description="25 min" iconSource={TomatoIcon} />
+
+              <TimeOption description="15 min" iconSource={SlugIcon} />
+
+              <TimeOption description="5 min" iconSource={LightiningIcon} />
+
+              <TimeOption description="Add" iconSource={PlusIcon} />
+            </View>
           </View>
 
           {/* footer */}
