@@ -1,5 +1,5 @@
 import "react-native-reanimated";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { stackNavigation } from "../utils/stackNavigation";
 
@@ -19,19 +19,54 @@ import TomatoIcon from "../../assets/tomato-icon.png";
 import SlugIcon from "../../assets/slug-icon.png";
 import LightiningIcon from "../../assets/lightining-icon.png";
 import PlusIcon from "../../assets/plus-icon.png";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Timer } from "../components/Timer";
 
 function Home() {
   const { setColorScheme, colorScheme } = useColorScheme();
 
   const navigation = stackNavigation();
   const [autoSwitchIsActive, setAutoSwitchIsActive] = useState(false);
-  const [darkSwitchIsActive, setDarkSwitchIsActive] = useState(
-    () => colorScheme === "dark"
-  );
+  const [darkSwitchIsActive, setDarkSwitchIsActive] = useState(false);
 
   useEffect(() => {
     setDarkSwitchIsActive(colorScheme === "dark");
   }, [colorScheme]);
+
+  const [minutesCount, setMinutesCount] = useState(0);
+  const [secondsCount, setSecondsCount] = useState(0);
+
+  const [timerIsCounting, setTimerIsCounting] = useState(false);
+
+  function convertToTwoDigit(number: number): string {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+
+  // implements time counter functionability (go to zero)
+  useEffect(() => {
+    if (timerIsCounting) {
+      let myInterval = setInterval(() => {
+        if (secondsCount > 0) {
+          setSecondsCount(secondsCount - 1);
+        }
+        if (secondsCount === 0) {
+          if (minutesCount === 0) {
+            clearInterval(myInterval);
+            setTimerIsCounting(false);
+          } else {
+            setMinutesCount(minutesCount - 1);
+            setSecondsCount(59);
+          }
+        }
+      }, 1000);
+
+      console.log(`${minutesCount}:${secondsCount}`);
+
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
+  });
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -83,32 +118,45 @@ function Home() {
           {/* main content */}
           <View>
             {/* timer */}
-            <View className="flex-row justify-between">
-              <TimerSegment content="1" />
-              <TimerSegment content="2" />
+            <Timer
+              minutes={convertToTwoDigit(minutesCount)}
+              seconds={convertToTwoDigit(secondsCount)}
+            />
 
-              <View className="items-center justify-center px-2">
-                <Text
-                  style={{
-                    fontSize: 108,
-                    fontFamily: "Rajdhani_600SemiBold",
-                    color: colorScheme === "light" ? "#474342" : "#F4F4F4",
-                  }}
-                >
-                  :
-                </Text>
-              </View>
-
-              <TimerSegment content="5" />
-              <TimerSegment content="0" />
-            </View>
-
+            {/* time options */}
             <View className="flex-row justify-between mt-[32]">
-              <TimeOption description="25 min" iconSource={TomatoIcon} />
+              <TimeOption
+                description="25 min"
+                iconSource={TomatoIcon}
+                onPress={() => {
+                  setMinutesCount(25);
+                  setSecondsCount(0);
 
-              <TimeOption description="15 min" iconSource={SlugIcon} />
+                  setTimerIsCounting(true);
+                }}
+              />
 
-              <TimeOption description="5 min" iconSource={LightiningIcon} />
+              <TimeOption
+                description="15 min"
+                iconSource={SlugIcon}
+                onPress={() => {
+                  setMinutesCount(15);
+                  setSecondsCount(0);
+
+                  setTimerIsCounting(true);
+                }}
+              />
+
+              <TimeOption
+                description="5 min"
+                iconSource={LightiningIcon}
+                onPress={() => {
+                  setMinutesCount(5);
+                  setSecondsCount(0);
+
+                  setTimerIsCounting(true);
+                }}
+              />
 
               <TimeOption description="Add" iconSource={PlusIcon} />
             </View>
@@ -135,7 +183,7 @@ function Home() {
                 duration: 800,
               }}
             >
-              Swipe up to Information
+              Read about
             </MotiText>
 
             <MotiView
