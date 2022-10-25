@@ -35,4 +35,4 @@ Esse repositório consiste no projeto Pomodoro. Consiste em um aplicativo mobile
   ```bash
   yarn start
   ```
-- Acessar o app no celular escaneando o QR code pelo aplicativo [https://expo.dev/client](Expo Go).
+- Acessar o app no celular escaneando o QR code pelo aplicativo [Expo Go](https://expo.dev/client).
