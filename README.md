@@ -2,7 +2,7 @@
 
 Esse repositório consiste no projeto Pomodoro. Consiste em um aplicativo mobile que implementa o método de estudo Pomodoro.
 
-<div align='center'><h2>Home nos modos light e dark</h2></div>
+## Tela Home nos modos light e dark
 <div align='center'>
   <img src='./github_assets/preview-light.jpg' alt='preview-light' height='350'>
   <img src='./github_assets/preview-dark.jpg' alt='preview-dark' height='350'>
